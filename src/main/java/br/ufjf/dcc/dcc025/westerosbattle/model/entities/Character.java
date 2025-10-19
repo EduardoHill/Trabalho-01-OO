@@ -33,5 +33,9 @@ public abstract class Character {
         return range;
     }
 
+    public boolean isAlive(){
+        return this.health > 0;
+    }
+
     public abstract void fight(Character character);
 }

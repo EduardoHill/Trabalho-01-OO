@@ -19,6 +19,7 @@ public class Board {
             line = rand.nextInt(size);
             column = side ? rand.nextInt(size / 2) : rand.nextInt(size / 2, size);
         } while (board[line][column] != null);
+        board[line][column] = character;
     }
 
     public int[] getPositon(Character character) {
@@ -52,10 +53,11 @@ public class Board {
             case ESQUERDA_BAIXO -> { newLine++; newColumn--; }
         }
         if (!isInside(newLine, newColumn)) return false;
-        if (board[newLine][newColumn] == null) return false;
+        if (board[newLine][newColumn] != null) return false;
 
+
+        board[line][column] = null;
         board[newLine][newColumn] = character;
-        board[newLine][newColumn] = null;
         return true;
     }
 
@@ -88,7 +90,7 @@ public class Board {
             System.out.println();
 
         }
-        System.out.println("=============\n");
+        System.out.println("=============================\n");
     }
 
 }

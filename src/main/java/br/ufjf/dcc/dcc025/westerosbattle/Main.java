@@ -10,17 +10,20 @@ public class Main {
     public static void main(String[] args) {
         Board board = new Board();
 
-        Character stark = new Stark("Stark");
-        Character lannister = new Lannister("Lannister");
+        Character jon = new Stark("Jon Snow");
+        Character cersei = new Lannister("Cersei");
 
-        board.setPosition(stark, true);
-        board.setPosition(lannister, false);
-
-        board.printBoard();
-
-        board.move(stark, Direction.DIREITA);
+        board.setPosition(jon, true);
+        board.setPosition(cersei, false);
 
         board.printBoard();
+
+        board.move(jon, Direction.BAIXO);
+        board.move(jon, Direction.ESQUERDA_BAIXO);
+        board.printBoard();
+
+        System.out.println("Distância entre Jon e Cersei: " + board.distance(jon, cersei));
+
 
     }
 }
