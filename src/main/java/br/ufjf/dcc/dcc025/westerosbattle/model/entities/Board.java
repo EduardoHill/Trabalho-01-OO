@@ -59,6 +59,15 @@ public class Board {
         return true;
     }
 
+    public int distance(Character character, Character target) {
+        int[] positionCharacter = getPositon(character);
+        int[] positionTarget = getPositon(target);
+
+        if (positionTarget == null || positionCharacter == null) return 0;
+
+        return Math.max(Math.abs(positionCharacter[0] - positionTarget[0]), Math.abs(positionCharacter[1] - positionTarget[1]));
+    }
+
 
     private boolean isInside(int line, int column) {
         return line >=0 && line < size && column >= 0 && column < size;
