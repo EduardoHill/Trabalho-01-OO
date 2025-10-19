@@ -73,4 +73,22 @@ public class Board {
         return line >=0 && line < size && column >= 0 && column < size;
     }
 
+    public void printBoard() {
+        System.out.println("\n======= TABULEIRO  =======");
+        for (int i = 0; i < size; i++) {
+            System.out.print(" ");
+            for (int j = 0; j < size; j++) {
+                if (board[i][j] == null) {
+                    System.out.print(". ");
+                } else {
+                    char ch = board[i][j].getName().charAt(0);
+                    System.out.print(ch + " ");
+                }
+            }
+            System.out.println();
+
+        }
+        System.out.println("=============\n");
+    }
+
 }
