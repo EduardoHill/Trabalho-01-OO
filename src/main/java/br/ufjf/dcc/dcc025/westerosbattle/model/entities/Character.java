@@ -33,5 +33,5 @@ public abstract class Character {
         return range;
     }
 
-    public abstract void figth(Character character);
+    public abstract void fight(Character character);
 }

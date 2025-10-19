@@ -6,7 +6,7 @@ public final class Targaryen  extends Character {
     }
 
     @Override
-    public void figth( Character character ) {
+    public void fight(Character character ) {
 
     }
 

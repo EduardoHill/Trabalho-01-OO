@@ -7,7 +7,7 @@ public final class Stark extends Character {
     }
 
     @Override
-    public void figth(Character character) {
+    public void fight(Character character) {
 
     }
 }
