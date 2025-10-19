@@ -7,6 +7,12 @@ public final class Lannister extends Character {
 
     @Override
     public void fight(Character character) {
+        int damage = (int) ((this.attack - character.baseDefense) * 1.15);
+        character.reciveDamage(damage);
+    }
 
+    @Override
+    public void reciveDamage(int damage) {
+        super.reciveDamage(damage);
     }
 }

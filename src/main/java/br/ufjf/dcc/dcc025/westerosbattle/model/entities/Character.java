@@ -37,5 +37,9 @@ public abstract class Character {
         return this.health > 0;
     }
 
+    public void reciveDamage(int damage) {
+        this.health -= damage;
+        if(this.health <= 0){ this.health = 0; }
+    }
     public abstract void fight(Character character);
 }

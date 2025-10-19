@@ -7,8 +7,12 @@ public final class Targaryen  extends Character {
 
     @Override
     public void fight(Character character ) {
-
+        int damage = this.attack;
+        character.reciveDamage(damage);
     }
 
-
+    @Override
+    public void reciveDamage(int damage) {
+        super.reciveDamage(damage);
+    }
 }

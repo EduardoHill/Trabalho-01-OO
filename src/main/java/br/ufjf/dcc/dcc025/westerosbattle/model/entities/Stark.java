@@ -8,6 +8,14 @@ public final class Stark extends Character {
 
     @Override
     public void fight(Character character) {
+        int damage = this.attack - character.baseDefense;
+        character.reciveDamage(damage);
+    }
 
+    @Override
+    public void reciveDamage(int damage) {
+
+        this.health -= (damage * 0.8);
+        if(this.health <= 0){ this.health = 0; }
     }
 }
