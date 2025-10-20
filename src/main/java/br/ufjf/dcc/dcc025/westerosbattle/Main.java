@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[] args) {
         Board board = new Board();
 
-        Character jon = new Targaryen("Jon Snow");
-        Character cersei = new Lannister("Cersei");
+        Character jon = new Targaryen("Jon Snow", board);
+        Character cersei = new Lannister("Cersei", board);
 
         board.setPosition(jon, true);
         board.setPosition(cersei, false);

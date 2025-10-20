@@ -5,12 +5,15 @@ public abstract class Character {
     protected double health;
     protected int baseDefense, attack, range;
 
-    public Character(String name, double health, int baseDefense, int attack, int range) {
+    protected Board board;
+
+    public Character(String name, double health, int baseDefense, int attack, int range, Board board) {
         this.name = name;
         this.health = health;
         this.baseDefense = baseDefense;
         this.attack = attack;
         this.range = range;
+        this.board = board;
     }
 
     public String getName() {
@@ -37,9 +40,9 @@ public abstract class Character {
         return this.health > 0;
     }
 
-    public void reciveDamage(int damage) {
+    public void receiveDamage(int damage) {
         this.health -= damage;
         if(this.health <= 0){ this.health = 0; }
     }
-    public abstract void fight(Character character);
+    public abstract void fight(Character target);
 }

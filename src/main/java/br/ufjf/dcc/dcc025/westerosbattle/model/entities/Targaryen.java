@@ -1,18 +1,22 @@
 package br.ufjf.dcc.dcc025.westerosbattle.model.entities;
 
 public final class Targaryen  extends Character {
-    public Targaryen(String name) {
-        super(name, 45, 10, 20, 3);
+    public Targaryen(String name, Board board) {
+        super(name, 45, 10, 20, 3, board);
     }
 
     @Override
-    public void fight(Character character ) {
+    public void fight(Character target) {
+        if ( this.board.distance(this, target) > this.range ) {
+            return;
+        }
+
         int damage = this.attack;
-        character.reciveDamage(damage);
+        target.receiveDamage(damage);
     }
 
     @Override
-    public void reciveDamage(int damage) {
-        super.reciveDamage(damage);
+    public void receiveDamage(int damage) {
+        super.receiveDamage(damage);
     }
 }

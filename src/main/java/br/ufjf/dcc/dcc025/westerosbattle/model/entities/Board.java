@@ -61,7 +61,7 @@ public class Board {
         return true;
     }
 
-    public int distance(Character character, Character target) {
+    public  int distance(Character character, Character target) {
         int[] positionCharacter = getPositon(character);
         int[] positionTarget = getPositon(target);
 
