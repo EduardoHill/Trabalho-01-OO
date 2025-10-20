@@ -10,11 +10,12 @@ public final class Lannister extends Character {
 
     @Override
     public void fight(Character target) {
-        if ( this.board.distance(this, target) > this.range ) {
-            return;
-        }
-        int damage = (int) ((this.attack - target.baseDefense) * 1.15);
-        target.receiveDamage(damage);
+        super.fight(target);
+    }
+
+    @Override
+    public int calculateDamage(Character target) {
+        return (int) ((this.attack - target.baseDefense) * 1.15);
     }
 
     @Override

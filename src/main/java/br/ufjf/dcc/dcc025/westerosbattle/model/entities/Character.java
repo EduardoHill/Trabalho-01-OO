@@ -44,5 +44,14 @@ public abstract class Character {
         this.health -= damage;
         if(this.health <= 0){ this.health = 0; }
     }
-    public abstract void fight(Character target);
+    public void fight(Character target){
+        if ( this.board.distance(this, target) > this.range ) {
+            return;
+        }
+
+
+        target.receiveDamage(calculateDamage(target));
+    };
+
+    public abstract int calculateDamage(Character target);
 }

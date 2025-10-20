@@ -8,11 +8,13 @@ public final class Stark extends Character {
 
     @Override
     public void fight(Character target) {
-        if ( this.board.distance(this, target) > this.range ) {
-            return;
-        }
-        int damage = this.attack - target.baseDefense;
-        target.receiveDamage(damage);
+        super.fight(target);
+    }
+
+
+    @Override
+    public int calculateDamage(Character target) {
+        return this.attack - target.baseDefense;
     }
 
     @Override

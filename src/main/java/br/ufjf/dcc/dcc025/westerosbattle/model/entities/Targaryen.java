@@ -7,12 +7,12 @@ public final class Targaryen  extends Character {
 
     @Override
     public void fight(Character target) {
-        if ( this.board.distance(this, target) > this.range ) {
-            return;
-        }
+       super.fight(target);
+    }
 
-        int damage = this.attack;
-        target.receiveDamage(damage);
+    @Override
+    public int calculateDamage(Character target) {
+        return this.attack;
     }
 
     @Override
