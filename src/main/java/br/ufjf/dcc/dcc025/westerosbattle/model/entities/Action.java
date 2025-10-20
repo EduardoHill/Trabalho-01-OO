@@ -2,14 +2,14 @@ package br.ufjf.dcc.dcc025.westerosbattle.model.entities;
 
 import br.ufjf.dcc.dcc025.westerosbattle.model.enums.ActionType;
 
-public class Actions {
+public class Action {
     private int turn;
     private  Character player;
     private String details;
 
     private ActionType type;
 
-    public Actions(int turn, Character player, String details, ActionType type) {
+    public Action(int turn, Character player, String details, ActionType type) {
         this.turn = turn;
         this.player = player;
         this.details = details;

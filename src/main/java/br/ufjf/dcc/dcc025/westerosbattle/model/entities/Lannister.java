@@ -8,10 +8,7 @@ public final class Lannister extends Character {
         super(name, 50, 10, 20, 2, board);
     }
 
-    @Override
-    public void fight(Character target) {
-        super.fight(target);
-    }
+
 
     @Override
     public int calculateDamage(Character target) {

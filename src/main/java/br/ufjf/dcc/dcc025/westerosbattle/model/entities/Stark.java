@@ -6,10 +6,6 @@ public final class Stark extends Character {
         super(name, 60, 10, 20, 1,  board);
     }
 
-    @Override
-    public void fight(Character target) {
-        super.fight(target);
-    }
 
 
     @Override

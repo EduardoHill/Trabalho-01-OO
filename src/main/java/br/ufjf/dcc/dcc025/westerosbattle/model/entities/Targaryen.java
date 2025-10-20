@@ -5,10 +5,7 @@ public final class Targaryen  extends Character {
         super(name, 45, 10, 20, 3, board);
     }
 
-    @Override
-    public void fight(Character target) {
-       super.fight(target);
-    }
+
 
     @Override
     public int calculateDamage(Character target) {
