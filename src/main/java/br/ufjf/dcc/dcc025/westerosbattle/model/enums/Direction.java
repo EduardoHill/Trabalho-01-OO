@@ -4,8 +4,8 @@ public enum Direction {
 
     DIREITA(0, 1),
     ESQUERDA(0, -1),
-    CIMA(1, 0),
-    BAIXO(-1, 0),
+    CIMA(-1, 0),
+    BAIXO(1, 0),
     DIREITA_CIMA(-1, 1),
     DIREITA_BAIXO(1, 1),
     ESQUERDA_CIMA(-1, -1),
