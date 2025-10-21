@@ -39,19 +39,10 @@ public class Board {
 
         int line = position[0];
         int column = position[1];
-        int newLine = line, newColumn = column;
+        int newLine = line + direction.getLineOffset();
+        int newColumn = column + direction.getColumnOffset();
 
 
-        switch (direction) {
-            case CIMA -> newLine--;
-            case BAIXO -> newLine++;
-            case DIREITA -> newColumn++;
-            case ESQUERDA -> newColumn--;
-            case DIREITA_CIMA -> { newLine--; newColumn++; }
-            case DIREITA_BAIXO -> { newLine++; newColumn++; }
-            case ESQUERDA_CIMA -> { newLine--; newColumn--; }
-            case ESQUERDA_BAIXO -> { newLine++; newColumn--; }
-        }
         if (!isInside(newLine, newColumn)) return false;
         if (board[newLine][newColumn] != null) return false;
 
