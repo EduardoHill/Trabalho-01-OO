@@ -87,6 +87,12 @@ public class GameController {
         if(!team1Alive && team2Alive) return 2;
         return 0;
     }
+    private boolean isGameOver(){
+        boolean team1Alive = team1.stream().allMatch(Character::isAlive);
+        boolean team2Alive = team2.stream().allMatch(Character::isAlive);
+
+        return !(team1Alive && team2Alive);
+    }
 
     private List<Character> getAliveEnimes(List<Character>team){
         List<Character> alive = new ArrayList<>();
@@ -148,8 +154,32 @@ public class GameController {
     }
 
     private void gameLoop(){
+        outer:
+        while (!isGameOver()){
+            board.printBoard();
+            for (int i = 0; i < 3 ; i++){
+                if (i < team1.size()){
+                    Character actor = team1.get(i);
+                    if (actor.isAlive()){
+                        handeTurn(actor,team2);
+                        if(isGameOver()) break outer;
+                    }
+                }
 
+                if (i < team2.size()){
+                    Character actor = team2.get(i);
+                    if (actor.isAlive()){
+                        handeTurn(actor,team1);
+                        if(isGameOver()) break outer;
+                    }
+                }
+            }
+            currentTurn++;
+        }
     }
+
+
+
 }
 
 
