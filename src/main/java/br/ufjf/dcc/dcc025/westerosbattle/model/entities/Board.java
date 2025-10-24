@@ -84,4 +84,10 @@ public class Board {
         System.out.println("=============================\n");
     }
 
+    public void removeChracter(Character character){
+        int[] position = getPosition(character);
+        if (position != null){
+            board[position[0]][position[1]] = null;
+        }
+    }
 }

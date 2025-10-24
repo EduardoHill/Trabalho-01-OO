@@ -2,6 +2,7 @@ package br.ufjf.dcc.dcc025.westerosbattle.controller;
 
 import br.ufjf.dcc.dcc025.westerosbattle.model.entities.*;
 import br.ufjf.dcc.dcc025.westerosbattle.model.entities.Character;
+import br.ufjf.dcc.dcc025.westerosbattle.model.enums.ActionType;
 import br.ufjf.dcc.dcc025.westerosbattle.view.InputView;
 import br.ufjf.dcc.dcc025.westerosbattle.view.MenuView;
 
@@ -41,7 +42,7 @@ public class GameController {
 
     }
 
-    public void teamCreate(){
+    private void teamCreate(){
         System.out.println("Escolha seus personagens");
         team2.clear();
         team1.clear();
@@ -69,7 +70,7 @@ public class GameController {
         }
     }
 
-    public Character creatCharacterByInt(int house, String name){
+    private Character creatCharacterByInt(int house, String name){
        return switch (house){
            case 1 -> new Stark(name,board);
            case 2 -> new Lannister(name, board);
@@ -78,14 +79,7 @@ public class GameController {
        };
     }
 
-    public boolean isGameOver(){
-        boolean team1Alive = team1.stream().allMatch(Character::isAlive);
-        boolean team2Alive = team2.stream().allMatch(Character::isAlive);
-
-        return !(team1Alive && team2Alive);
-    }
-
-    public int determineWinerTeam(){
+    private int determineWinerTeam(){
         boolean team1Alive = team1.stream().allMatch(Character::isAlive);
         boolean team2Alive = team2.stream().allMatch(Character::isAlive);
 
@@ -104,4 +98,76 @@ public class GameController {
     }
 
 
+
+    private void handeTurn(Character actor, List<Character> enemyTeam){
+        System.out.println("\nTurno [" + currentTurn + "] - Jogador: " + actor.getName());
+
+        int action = menu.chooseAction();
+        switch (action){
+            case 1 -> {
+                var dir = menu.chooseDirection();
+                boolean moved = board.move(actor,dir);
+
+                if (moved){
+                    System.out.println(actor.getName() + " moveu para [" + dir + "] ");
+                    gameLog.setActions(new Action(currentTurn,actor,"Moveu para " + dir, ActionType.MOVE));
+                }else {
+                    System.out.println("Movimento invalido");
+                }
+            }
+
+            case 2 ->{
+                List<Character> enimies = getAliveEnimes(enemyTeam);
+                if (enimies.isEmpty()) {
+                    System.out.println("Nenhum inimigo vivo disponivel");
+                    break;
+                }
+                Character target = menu.chooseTarget(enimies);
+                int distance = board.distance(actor,target);
+                if (distance <= actor.getRange()){
+                    actor.fight(target);
+                    gameLog.setActions(new Action(currentTurn,actor,"Atacou - [" + target.getName()+"]", ActionType.ATTACK ));
+                    System.out.println(actor.getName() + " Atacou - " + target.getName());
+
+                    if (!target.isAlive()){
+                        System.out.println("O ataque foi potente " + target.getName() + " nao esta mais entre nos");
+                        board.removeChracter(target);
+                    }
+                }else {
+                    System.out.println("O alvo esta muito longe");
+                    System.out.println(actor.getName() + " perdeu a vez :(");
+                }
+
+            }
+
+            default -> {
+                System.out.println("Acao invalida, perdeu a vez!!!");
+            }
+
+        }
+    }
+
+    private void gameLoop(){
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
