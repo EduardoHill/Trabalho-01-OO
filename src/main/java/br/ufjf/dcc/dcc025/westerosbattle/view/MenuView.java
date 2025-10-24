@@ -29,8 +29,8 @@ public class MenuView {
     public int chooseCharacter(){
         System.out.println("Escolha um personagem: ");
         System.out.println("[1] Stark     (HP:60, DEF:10, ATK:20, RANGE: 1, EXP:DEF-Bruta ");
-        System.out.println("[1] Lannister     (HP:50, DEF:10, ATK:20, RANGE: 2, EXP:ATK-LIQUIDO ");
-        System.out.println("[1] Targaryen     (HP:45, DEF:10, ATK:20, RANGE: 3, EXP:ATK-BRUTO ");
+        System.out.println("[2] Lannister     (HP:50, DEF:10, ATK:20, RANGE: 2, EXP:ATK-LIQUIDO ");
+        System.out.println("[3] Targaryen     (HP:45, DEF:10, ATK:20, RANGE: 3, EXP:ATK-BRUTO ");
         return input.readChoice("Escolher: ", 1, 3);
     }
 
