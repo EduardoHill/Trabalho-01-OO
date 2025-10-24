@@ -11,20 +11,28 @@ public class InputView {
         scanner = new Scanner(System.in);
     }
 
-    public Direction readDirection(){
-        System.out.println("Escolha a direção: ");
-        for (int i = 0; i < Direction.values().length; i++){
-            System.out.println((i + 1) + ". " + Direction.values()[i].name());
+    public Direction readDirection() {
+        Direction[] directions = Direction.values();
+        int choice = -1;
+        System.out.println("Escolha a direção:");
+        for (int i = 0; i < directions.length; i++) {
+            System.out.println((i + 1) + ". " + directions[i].name());
         }
-        System.out.print("Digite de 1 a " + (Direction.values().length) + ": ");
-        int direction = scanner.nextInt() - 1;
-        while (direction < 1 || direction >= Direction.values().length){
-            System.out.println("Valor inválido (1 a" + Direction.values().length + "), digite novamente: ");
+        System.out.print("Digite de 1 a " + directions.length + ": ");
+        if (scanner.hasNextInt()) {
+            choice = scanner.nextInt();
         }
         scanner.nextLine();
-        System.out.println("Direction escolhida = " + Direction.values()[direction].name());
-
-        return Direction.values()[direction];
+        while (choice < 1 || choice > directions.length) {
+            System.out.println("Valor inválido (1 a " + directions.length + "), digite novamente:");
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+            }
+            scanner.nextLine();
+        }
+        Direction selected = directions[choice - 1];
+        System.out.println("Direção escolhida = " + selected.name());
+        return selected;
     }
 
     public Boolean readBoolean(String message){
@@ -39,7 +47,7 @@ public class InputView {
     }
 
     public String readString(String prompt){
-        System.out.println(prompt);
+        System.out.print(prompt);
         String text = scanner.nextLine().trim();
 
         while(text.isEmpty()){
@@ -50,22 +58,23 @@ public class InputView {
         return text;
     }
 
-    public int readChoice(String message, int min, int max){
+    public int readChoice(String message, int min, int max) {
         int choice = -1;
-        System.out.println(message);
-        while (choice < min || choice > max){
-            if(scanner.hasNextInt()) {
+        boolean valid = false;
+        while (!valid) {
+            System.out.print(message + " ");
+            if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
-                scanner.nextLine();
-                if (choice < min || choice > max) {
-                    System.out.println("Valor inválido, digite novamente: ");
+                if (choice >= min && choice <= max) {
+                    valid = true;
+                } else {
+                    System.out.println("Valor fora do intervalo (" + min + " - " + max + ").");
                 }
-            }   else{
-                    System.out.println("Digite um número válido: ");
-                    scanner.nextLine();
-                }
+            } else {
+                System.out.println("Entrada inválida! Digite um número.");
+            }
+            scanner.nextLine();
         }
-
         return choice;
     }
 

@@ -34,11 +34,23 @@ public class GameController {
     public void startGame(){
         menu.showWelcome();
         int choice = menu.mainMenu();
-        if (choice == 1){
+        if (choice == 2){
             input.closeScanner();
             System.out.println("...Saindo");
             return;
         }
+        teamCreate();
+        gameLoop();
+
+        int winerTeam = determineWinerTeam();
+        switch (winerTeam){
+            case 1 -> System.out.println("Vitoria do time 1");
+            case 2 -> System.out.println("Vitoria do time 2");
+            default -> System.out.println("Empate ou erro ao determinar ganhador");
+        }
+        System.out.println("======== Historico do Game ========");
+        gameLog.printActions();
+        input.closeScanner();
 
     }
 
@@ -48,7 +60,7 @@ public class GameController {
         team1.clear();
 
         for (int i = 1; i <= 2 ; i++){
-            System.out.println("Jogador ["+i+"]");
+            System.out.println("Jogador "+i);
 
             for (int j = 1; j <= 3 ; j++){
                 System.out.println("Personagen [" + j + "]");
@@ -117,6 +129,7 @@ public class GameController {
                 if (moved){
                     System.out.println(actor.getName() + " moveu para [" + dir + "] ");
                     gameLog.setActions(new Action(currentTurn,actor,"Moveu para " + dir, ActionType.MOVE));
+                    board.printBoard();
                 }else {
                     System.out.println("Movimento invalido");
                 }
