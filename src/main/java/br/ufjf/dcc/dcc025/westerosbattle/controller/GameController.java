@@ -92,27 +92,24 @@ public class GameController {
     }
 
     private int determineWinerTeam(){
-        boolean team1Alive = team1.stream().allMatch(Character::isAlive);
-        boolean team2Alive = team2.stream().allMatch(Character::isAlive);
+        boolean team1Winer = teamAlive(team1);
+        boolean team2Winer = teamAlive(team2);
 
-        if(team1Alive && !team2Alive) return 1;
-        if(!team1Alive && team2Alive) return 2;
+        if(team1Winer && !team2Winer) return 1;
+        if(!team1Winer && team2Winer) return 2;
         return 0;
     }
-    private boolean isGameOver(){
-        boolean team1Alive = team1.stream().allMatch(Character::isAlive);
-        boolean team2Alive = team2.stream().allMatch(Character::isAlive);
 
-        return !(team1Alive && team2Alive);
+    private boolean teamAlive(List<Character> team){
+        return team.stream().anyMatch(Character::isAlive);
+    }
+
+    private boolean isGameOver(){
+        return !(teamAlive(team1) && teamAlive(team2));
     }
 
     private List<Character> getAliveEnimes(List<Character>team){
-        List<Character> alive = new ArrayList<>();
-        for(Character c : team){
-            if(c != null && c.isAlive()) alive.add(c);
-
-        }
-        return alive;
+        return team.stream().filter(Character::isAlive).toList();
     }
 
 
