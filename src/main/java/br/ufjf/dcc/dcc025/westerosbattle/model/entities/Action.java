@@ -34,11 +34,6 @@ public class Action {
 
     @Override
     public String toString() {
-        return "Actions{" +
-                "turn=" + turn +
-                ", player=" + player +
-                ", details='" + details + '\'' +
-                ", type=" + type +
-                '}';
+        return "Turno [ " + turn + " ], Player [ " + player + " ], " + details;
     }
 }

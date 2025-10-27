@@ -125,7 +125,7 @@ public class GameController {
 
                 if (moved){
                     System.out.println(actor.getName() + " moveu para [" + dir + "] ");
-                    gameLog.setActions(new Action(currentTurn,actor,"Moveu para " + dir, ActionType.MOVE));
+                    gameLog.setActions(new Action(currentTurn,actor," Moveu para " + dir + " ", ActionType.MOVE));
                     board.printBoard();
                 }else {
                     System.out.println("Movimento invalido");
@@ -142,7 +142,7 @@ public class GameController {
                 int distance = board.distance(actor,target);
                 if (distance <= actor.getRange()){
                     actor.fight(target);
-                    gameLog.setActions(new Action(currentTurn,actor,"Atacou - [" + target.getName()+"]", ActionType.ATTACK ));
+                    gameLog.setActions(new Action(currentTurn,actor," Atacou - [ " + target.getName()+" ] e ele ficou com " + target.getHealth() + " ]", ActionType.ATTACK ));
                     System.out.println(actor.getName() + " Atacou - " + target.getName());
 
                     if (!target.isAlive()){
