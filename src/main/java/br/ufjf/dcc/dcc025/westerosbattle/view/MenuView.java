@@ -26,6 +26,14 @@ public class MenuView {
         return input.readChoice("Escolha: " , 1, 2);
     }
 
+    public int chooseGameMode(){
+        System.out.println("\n=== Escolha o modo de jogo ===");
+        System.out.println("[1] Jogador vs Jogador (PvP)");
+        System.out.println("[2] Jogador vs Bot (PvBot)");
+        System.out.println("[3] Bot vs Bot (Assistir)");
+        return input.readChoice("Escolha o modo: ", 1, 3);
+    }
+
     public int chooseCharacter(){
         System.out.println("Escolha um personagem: ");
         System.out.println("[1] Stark     (HP:60, DEF:10, ATK:20, RANGE: 1, EXP:DEF-Bruta ");
