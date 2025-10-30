@@ -64,6 +64,14 @@ public class MenuView {
         return targets.get(aux-1);
     }
 
+    public int postVictoryMenu(){
+        System.out.println("\n=== Fim de Jogo ===");
+        System.out.println("[1] Imprimir replay");
+        System.out.println("[2] Novo jogo");
+        System.out.println("[3] Sair");
+        return input.readChoice("Escolha: ", 1, 3);
+    }
+
 
 
 }

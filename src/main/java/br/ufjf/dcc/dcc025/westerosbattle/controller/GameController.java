@@ -42,28 +42,59 @@ public class GameController {
 
     public void startGame(){
         menu.showWelcome();
-        int choice = menu.mainMenu();
-        if (choice == 2){
-            input.closeScanner();
-            System.out.println("...Saindo");
-            return;
+
+
+        outerStart:
+        while (true) {
+            int choice = menu.mainMenu();
+            if (choice == 2) {
+                input.closeScanner();
+                System.out.println("...Saindo");
+                return;
+            }
+
+            int gameMode = menu.chooseGameMode();
+            setupStrategies(gameMode);
+            teamCreate(gameMode);
+            gameLoop();
+
+            int winerTeam = determineWinerTeam();
+            switch (winerTeam) {
+                case 1 -> System.out.println("Vitoria do time 1");
+                case 2 -> System.out.println("Vitoria do time 2");
+                default -> System.out.println("Empate ou erro ao determinar ganhador");
+            }
+
+            while (true) {
+                int post = menu.postVictoryMenu();
+                switch (post) {
+                    case 1 -> {
+                        System.out.println("======== Historico do Game ========");
+                        gameLog.printActions();
+                    }
+                    case 2 -> {
+                        resetGameState();
+                        continue outerStart;
+                    }
+                    case 3 -> {
+                        input.closeScanner();
+                        System.out.println("...Saindo");
+                        return;
+                    }
+                    default -> System.out.println("Opcao invalida");
+                }
+            }
         }
+    }
 
-        int gameMode = menu.chooseGameMode();
-        setupStrategies(gameMode);
-        teamCreate(gameMode);
-        gameLoop();
-
-        int winerTeam = determineWinerTeam();
-        switch (winerTeam){
-            case 1 -> System.out.println("Vitoria do time 1");
-            case 2 -> System.out.println("Vitoria do time 2");
-            default -> System.out.println("Empate ou erro ao determinar ganhador");
-        }
-        System.out.println("======== Historico do Game ========");
-        gameLog.printActions();
-        input.closeScanner();
-
+    private void resetGameState() {
+        this.board = new Board();
+        this.gameLog = new GameLog();
+        this.currentTurn = 1;
+        this.team1.clear();
+        this.team2.clear();
+        this.team1Strategies.clear();
+        this.team2Strategies.clear();
     }
 
     private void setupStrategies(int gameMode) {
