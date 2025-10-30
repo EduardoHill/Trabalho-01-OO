@@ -34,6 +34,6 @@ public class Action {
 
     @Override
     public String toString() {
-        return "Turno [ " + turn + " ], Player [ " + player + " ], " + details;
+        return "Turno [ " + turn + " ], Player [ " + player.getName() + " ], " + details;
     }
 }
