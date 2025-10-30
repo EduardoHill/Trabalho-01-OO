@@ -72,10 +72,10 @@ public class Board {
             System.out.print(" ");
             for (int j = 0; j < SIZE; j++) {
                 if (board[i][j] == null) {
-                    System.out.print(". ");
+                    System.out.print("| . |");
                 } else {
                     char ch = board[i][j].getName().charAt(0);
-                    System.out.print(ch + " ");
+                    System.out.print("| " + ch + " |");
                 }
             }
             System.out.println();

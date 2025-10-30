@@ -58,7 +58,7 @@ public class MenuView {
         for (int i = 0 ; i < targets.size(); i++){
 
             Character character = targets.get(i);
-            System.out.println("[" + (i + 1) + "] " + character.getName() + " HP:" + character.getHealth() );
+            System.out.println("[" + (i + 1) + "] " + character.getName() + " HP:" + String.format("%.2f", character.getHealth()) );
         }
         int aux = input.readChoice("Escolha seu personagem", 1, targets.size());
         return targets.get(aux-1);

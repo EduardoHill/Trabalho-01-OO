@@ -31,7 +31,7 @@ public class BotStrategy implements PlayerStrategy {
                     .min(Comparator.comparingDouble(Character::getHealth))
                     .orElse(inRange.get(0));
 
-            System.out.println("[BOT] " + actor.getName() + " decidiu atacar " + weakest.getName() + " (HP: " + weakest.getHealth() + ")");
+            System.out.println("[BOT] " + actor.getName() + " decidiu atacar " + weakest.getName() + " (HP: " + String.format("%.2f", weakest.getHealth()) + ")");
             return new PlayerAction(ActionType.ATTACK, weakest);
         }
         Character nearest = findNearestEnemy(actor, aliveEnemies, board);

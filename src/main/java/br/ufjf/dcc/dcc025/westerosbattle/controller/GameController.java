@@ -211,7 +211,7 @@ public class GameController {
 
 
     private void handeTurn(Character actor, List<Character> enemyTeam, PlayerStrategy strategy){
-        System.out.println("\nTurno [" + currentTurn + "] - Jogador: " + actor.getName() + " (HP: " + actor.getHealth() + ")");
+    System.out.println("\nTurno [" + currentTurn + "] - Jogador: " + actor.getName() + " (HP: " + String.format("%.2f", actor.getHealth()) + ")");
 
         PlayerAction action = strategy.decideTurn(actor, enemyTeam, board);
 
@@ -244,7 +244,7 @@ public class GameController {
 
                 if (distance <= actor.getRange()) {
                     actor.fight(target);
-                    gameLog.setActions(new Action(currentTurn, actor, " Atacou - [ " + target.getName() + " ] e ele ficou com [ " + target.getHealth() + " ]", ActionType.ATTACK));
+                    gameLog.setActions(new Action(currentTurn, actor, " Atacou - [ " + target.getName() + " ] e ele ficou com [ " + String.format("%.2f", target.getHealth()) + " ]", ActionType.ATTACK));
                     System.out.println(actor.getName() + " Atacou - " + target.getName());
 
                     if (!target.isAlive()) {
